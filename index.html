@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OmCredit — Instant Small Loans</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --orange: #F2884D;
+    --orange-deep: #D9702E;
+    --purple: #5B5490;
+    --purple-deep: #443F70;
+    --cream: #FFF8F0;
+    --peach: #FCE0CC;
+    --ink: #221B1E;
+    --ink-muted: #6B6270;
+    --line: #EFDCC8;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    font-family:'IBM Plex Sans', sans-serif;
+    background:var(--cream);
+    color:var(--ink);
+    line-height:1.5;
+  }
+  a{color:inherit; text-decoration:none;}
+  .wrap{max-width:1040px; margin:0 auto; padding:0 28px;}
+
+  nav{display:flex; align-items:center; justify-content:space-between; padding:24px 0;}
+  .brand{display:flex; align-items:center; gap:12px;}
+  .brand img{width:38px; height:38px;}
+  .brand-name{font-family:'Fraunces', serif; font-weight:600; font-size:1.35rem; color:var(--purple-deep);}
+  .brand-name span{color:var(--orange-deep);}
+  .nav-links a{font-size:0.92rem; color:var(--ink-muted);}
+  .nav-links a:hover{color:var(--purple-deep);}
+
+  /* HERO */
+  .hero{padding:40px 0 70px; text-align:center;}
+  .hero img.logo-big{width:96px; height:96px; margin-bottom:24px;}
+  .hero h1{
+    font-family:'Fraunces', serif; font-weight:600;
+    font-size:clamp(2.1rem, 4.8vw, 3.1rem);
+    color:var(--purple-deep);
+    letter-spacing:-0.01em;
+    max-width:640px; margin:0 auto 18px;
+  }
+  .hero h1 em{font-style:italic; color:var(--orange-deep);}
+  .hero p{
+    max-width:480px; margin:0 auto 32px;
+    color:var(--ink-muted); font-size:1.05rem;
+  }
+  .btn-download{
+    display:inline-flex; align-items:center; gap:10px;
+    background:var(--orange); color:#fff; font-weight:600;
+    padding:15px 32px; border-radius:10px; font-size:1.02rem;
+    transition:background 0.15s ease, transform 0.15s ease;
+  }
+  .btn-download:hover{background:var(--orange-deep); transform:translateY(-1px);}
+  .btn-download svg{width:18px; height:18px;}
+  .apk-note{margin-top:12px; font-size:0.82rem; color:var(--ink-muted);}
+
+  /* LOAN TIERS */
+  .section{padding:20px 0 80px;}
+  .section-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.78rem; letter-spacing:0.08em; text-transform:uppercase;
+    color:var(--orange-deep); margin-bottom:10px; display:block; text-align:center;
+  }
+  .section h2{
+    font-family:'Fraunces', serif; font-weight:600;
+    font-size:clamp(1.6rem, 3vw, 2.1rem);
+    color:var(--purple-deep); text-align:center; margin-bottom:12px;
+  }
+  .section > p.sub{text-align:center; color:var(--ink-muted); max-width:480px; margin:0 auto 44px;}
+
+  .tiers{
+    display:grid; grid-template-columns:repeat(3, 1fr); gap:20px;
+  }
+  .tier-card{
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:32px 26px;
+    text-align:center;
+    transition:transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .tier-card:hover{transform:translateY(-3px); box-shadow:0 12px 28px rgba(91,84,144,0.10);}
+  .tier-card .amount{
+    font-family:'Fraunces', serif; font-weight:600;
+    font-size:2rem; color:var(--purple-deep); margin-bottom:6px;
+  }
+  .tier-card .amount span{font-size:1.1rem; color:var(--orange-deep);}
+  .tier-card .interest{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.88rem; color:var(--orange-deep);
+    background:var(--peach); display:inline-block;
+    padding:5px 12px; border-radius:100px; margin-top:8px;
+  }
+  .tier-card .desc{color:var(--ink-muted); font-size:0.9rem; margin-top:14px;}
+
+  .interest-note{
+    text-align:center; margin-top:28px; font-size:0.85rem; color:var(--ink-muted);
+    max-width:520px; margin-left:auto; margin-right:auto;
+  }
+
+  /* HOW IT WORKS */
+  .steps{
+    display:grid; grid-template-columns:repeat(3, 1fr); gap:24px; margin-top:16px;
+  }
+  .step{padding:8px;}
+  .step .n{
+    font-family:'Fraunces', serif; font-weight:600; font-size:1.6rem;
+    color:var(--orange); margin-bottom:10px;
+  }
+  .step h3{font-family:'Fraunces', serif; font-weight:600; font-size:1.1rem; color:var(--purple-deep); margin-bottom:8px;}
+  .step p{color:var(--ink-muted); font-size:0.92rem;}
+
+  footer{
+    display:flex; justify-content:space-between; align-items:center;
+    padding:24px 0 100px; font-size:0.85rem; color:var(--ink-muted);
+    border-top:1px solid var(--line); flex-wrap:wrap; gap:12px;
+  }
+
+  /* FLOATING CONTACT BUTTON */
+  .float-contact{
+    position:fixed; bottom:26px; right:26px;
+    background:var(--purple); color:#fff;
+    font-weight:600; font-size:0.95rem;
+    padding:15px 24px; border-radius:100px;
+    display:flex; align-items:center; gap:8px;
+    box-shadow:0 10px 24px rgba(91,84,144,0.35);
+    transition:background 0.15s ease, transform 0.15s ease;
+    z-index:50;
+  }
+  .float-contact:hover{background:var(--purple-deep); transform:translateY(-2px);}
+  .float-contact svg{width:16px; height:16px;}
+
+  @media (max-width:760px){
+    .tiers{grid-template-columns:1fr;}
+    .steps{grid-template-columns:1fr;}
+  }
+
+  :focus-visible{outline:2px solid var(--orange-deep); outline-offset:2px;}
+  @media (prefers-reduced-motion: reduce){ *{transition:none !important;} }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <nav>
+    <div class="brand">
+      <img src="logo.png" alt="OmCredit logo">
+      <div class="brand-name">Om<span>Credit</span></div>
+    </div>
+    <div class="nav-links">
+      <a href="contact.html">Contact</a>
+    </div>
+  </nav>
+</div>
+
+<section class="hero">
+  <div class="wrap">
+    <img src="logo.png" alt="OmCredit" class="logo-big">
+    <h1>Small loans, <em>sent fast</em>, sorted simply.</h1>
+    <p>Apply in minutes, get a decision quickly, and repay on clear, upfront terms — no paperwork, no waiting rooms.</p>
+    <a href="OmCredit.apk" class="btn-download" download>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Download OmCredit App
+    </a>
+    <div class="apk-note">Direct APK download — you may need to allow installs from unknown sources on your phone.</div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <span class="section-label">Loan Options</span>
+    <h2>Pick the amount that fits.</h2>
+    <p class="sub">All three loan sizes are available from your very first application.</p>
+
+    <div class="tiers">
+      <div class="tier-card">
+        <div class="amount"><span>Rs.</span> 3,000</div>
+        <div class="interest">5% monthly interest</div>
+        <p class="desc">Ideal for a quick top-up before your next payday.</p>
+      </div>
+      <div class="tier-card">
+        <div class="amount"><span>Rs.</span> 6,000</div>
+        <div class="interest">5% monthly interest</div>
+        <p class="desc">A bit more breathing room for bigger essentials.</p>
+      </div>
+      <div class="tier-card">
+        <div class="amount"><span>Rs.</span> 9,000</div>
+        <div class="interest">5% monthly interest</div>
+        <p class="desc">Our largest starting loan, repaid on a clear monthly schedule.</p>
+      </div>
+    </div>
+    <p class="interest-note">Interest is calculated monthly on the outstanding balance. Please review the full repayment schedule in the app before borrowing.</p>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0;">
+  <div class="wrap">
+    <span class="section-label">How It Works</span>
+    <h2>Three steps, start to finish.</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="n">01</div>
+        <h3>Download &amp; sign up</h3>
+        <p>Install the app and create your account in under two minutes.</p>
+      </div>
+      <div class="step">
+        <div class="n">02</div>
+        <h3>Choose your loan</h3>
+        <p>Select Rs. 3,000, 6,000, or 9,000 based on what you need right now.</p>
+      </div>
+      <div class="step">
+        <div class="n">03</div>
+        <h3>Get funded</h3>
+        <p>Once approved, funds are sent straight to your account.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <footer>
+    <span>© 2026 OmCredit</span>
+    <span><a href="contact.html">Contact</a></span>
+  </footer>
+</div>
+
+<a href="contact.html" class="float-contact">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+  Contact Us
+</a>
+
+</body>
+</html>
